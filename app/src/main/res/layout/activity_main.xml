@@ -18,6 +18,7 @@
             android:id="@+id/nbr_txt"
             android:layout_marginBottom="30dp"
             android:hint="Enter a number"
+            android:inputType="number"
             android:gravity="center"
             android:layout_marginHorizontal="80dp"
             android:layout_width="match_parent"

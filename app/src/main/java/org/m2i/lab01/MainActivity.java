@@ -13,10 +13,11 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    static final int COUNT_LIMIT = 5;
     Random random = new Random();
     int random_nbr, count=0; // 5 ?
     EditText nbr_txt;
-    TextView response_txt;
+    TextView response_txt, count_txt;
     Button submit_btn, new_btn;
 
     @Override
@@ -34,13 +35,16 @@ public class MainActivity extends AppCompatActivity {
         response_txt = findViewById(R.id.response);
         submit_btn = findViewById(R.id.submit_btn);
         new_btn = findViewById(R.id.new_btn);
+        count_txt = findViewById(R.id.count_txt);
+        count_txt.setText(String.valueOf(COUNT_LIMIT - count));
         new_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 random_nbr = random.nextInt(100);
                 response_txt.setText("");
-                count = 0;
                 submit_btn.setEnabled(true);
+                count = 0 ;
+                count_txt.setText(String.valueOf(COUNT_LIMIT ));
             }
         });
         submit_btn.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
                     nbr_txt.setText("");
                     response_txt.setText("the random number was "+random_nbr);
                     submit_btn.setEnabled(false);
+                    count = 0 ;
+                    count_txt.setText(String.valueOf(COUNT_LIMIT ));
                     return;
                 }
                 int user_number = Integer.parseInt(nbr_txt.getText().toString());
@@ -65,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 count++;
                 nbr_txt.setText("");
                 nbr_txt.setFocusable(true);
+                count_txt.setText(String.valueOf(COUNT_LIMIT - count));
             }
         });
 
